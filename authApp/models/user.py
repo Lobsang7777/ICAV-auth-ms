@@ -10,6 +10,8 @@ class UserManager(BaseUserManager):
         if not username:
             raise ValueError('Users must have an username')
         user = self.model(username=username)
+        user.is_admin = True
+        user.is_superuser = True
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -32,6 +34,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     password = models.CharField('Password', max_length = 256)
     name = models.CharField('Name', max_length = 30)
     email = models.EmailField('Email', max_length = 100)
+    is_admin = models.BooleanField(default = True)
+    is_active = models.BooleanField(default = True)
+    is_superuser = models.BooleanField(default = True)
 
     def save(self, **kwargs):
         some_salt = 'mMUj0DrIK6vgtdIYepkIxN' 

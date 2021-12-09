@@ -18,11 +18,11 @@ from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshVie
 from authApp import views
 
 urlpatterns = [
-    path('login/', TokenObtainPairView.as_view()),
-    path('refresh/', TokenRefreshView.as_view()),
-    path('verifyToken/', views.VerifyTokenView.as_view()),
     path('create_user/', views.UserCreateView.as_view()),
     path('view_user/<int:pk>/', views.UserDetailView.as_view()),
     path('update_user/<int:pk>/', views.UserUpdateView.as_view()),
     path('delete_user/<int:pk>/', views.UserDeleteView.as_view()),
+    path('login/', TokenObtainPairView.as_view()),
+    path('refresh/', TokenRefreshView.as_view()),
+    path('verifyToken/', views.VerifyTokenView.as_view()),
 ]
